@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import './App.css'
 import Header from './Header'
 import Board from './Board'
@@ -17,6 +17,20 @@ function App() {
   ])
 
   const [moves, setMoves] = useState(0);
+  const[loading,setLoading] = useState(true);
+  
+  useEffect (() => {
+    async function fetchData() {
+      const res = await fetch("https://api.npoint.io/c734e05e43c5b87dd971");
+      const myjson = await res.json()
+      console.log(myjson);
+      setTurno(myjson.turno);
+      setValues(myjson.values);
+      setMoves(myjson.moves);
+      setLoading(false);
+    }
+    fetchData();
+  }, [])
 
   function appClick(rowNumber, columNumber) {
     console.log("Click en " + rowNumber + columNumber);
@@ -42,11 +56,12 @@ function App() {
   return (
     <div className="App">
       <h2>TicTacToe</h2>
+      {loading ? "LOADING...": <div>
       <Header turno={turno} />
 
       <Board values={values} appClick={appClick} />
       <h3>Numero de movimientos: {moves}</h3>
-      <Reset resetClick = {resetClick}/>
+      <Reset resetClick = {resetClick}/> </div>}
     </div>
   )
 }
