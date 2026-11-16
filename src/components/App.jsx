@@ -1,12 +1,13 @@
 
 import { useState,useEffect } from 'react'
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Header'
 import Board from './Board'
 import Reset from './Reset'
 
-const PLAYERX = "Player 1-Xs"
-const PLAYERO = "Player 2-Os"
+const PLAYERX = "Player 1 - Xs"
+const PLAYERO = "Player 2 - Os"
 
 function App() {
   const [turno, setTurno] = useState(PLAYERX);
@@ -24,7 +25,7 @@ function App() {
       const res = await fetch("https://api.npoint.io/c734e05e43c5b87dd971");
       const myjson = await res.json()
       console.log(myjson);
-      setTurno(myjson.turno);
+      setTurno(myjson.turn);
       setValues(myjson.values);
       setMoves(myjson.moves);
       setLoading(false);
