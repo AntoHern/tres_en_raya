@@ -10,7 +10,7 @@ const PLAYERO = "Player 2-Os"
 function App() {
   const [turno, SetTurno] = useState(PLAYERX);
   const [values,SetValues] = useState([
-    ["-","-","-"],
+    ["X","-","-"],
     ["-","-","-"],
     ["-","-","-"]
 
