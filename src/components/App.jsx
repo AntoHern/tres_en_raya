@@ -13,15 +13,23 @@ function App() {
     ["X","-","-"],
     ["-","-","-"],
     ["-","-","-"]
-
   ])
+
+  function appClick(rowNumber,columNumber){
+    console.log("Click en "+ rowNumber + columNumber);
+    let valuesCopy = JSON.parse(JSON.stringify(values));
+    let newMovement = turno === PLAYERX ? "X": "O";
+    valuesCopy[rowNumber][columNumber] = newMovement;
+    SetTurno(turno === PLAYERX ?PLAYERO:PLAYERX);
+    SetValues(valuesCopy);
+  }
 
   return (
     <div className="App">
       <h2>TicTacToe</h2>
       <Header turno = {turno}/>
 
-     <Board values = {values}/>
+     <Board values = {values} appClick = {appClick}/>
       </div>
   )
 }
