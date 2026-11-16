@@ -182,3 +182,10 @@
     border-right-color: var(--border);
   }
 }
+
+.clickable {
+  cursor: pointer;
+}
+.no_clickable {
+  cursor: not-allowed;
+}
